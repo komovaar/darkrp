@@ -7,7 +7,7 @@ if CLIENT then
     SWEP.DrawCrosshair = false
 end
 
-SWEP.Author = "whosgotch"
+SWEP.Author = "DarkRP Developers"
 SWEP.Instructions = "Left click to weapon check\nRight click to confiscate weapons\nReload to give back the weapons"
 SWEP.Contact = ""
 SWEP.Purpose = ""
@@ -20,7 +20,7 @@ SWEP.AnimPrefix = "rpg"
 SWEP.PrintName = "Weapon Checker"
 SWEP.Spawnable = true
 SWEP.AdminOnly = true
-SWEP.Category = "Highborn (Утіліти)"
+SWEP.Category = "DarkRP (Utility)"
 SWEP.Primary.ClipSize = -1
 SWEP.Primary.DefaultClip = 0
 SWEP.Primary.Automatic = false

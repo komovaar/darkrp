@@ -7,7 +7,7 @@ end
 
 DEFINE_BASECLASS("weapon_cs_base2")
 
-SWEP.Author = "whosgotch"
+SWEP.Author = "DarkRP Developers"
 SWEP.Contact = ""
 SWEP.Purpose = ""
 SWEP.IconLetter = ""
@@ -63,14 +63,14 @@ function SWEP:Initialize()
     local materialName = "darkrp/" .. self:GetClass()
     if stunstickMaterials[materialName] then return end
 
-    -- CreateMaterial(materialName, "VertexLitGeneric", {
-    --     ["$basetexture"] = "models/debug/debugwhite",
-    --     ["$surfaceprop"] = "metal",
-    --     ["$envmap"] = "env_cubemap",
-    --     ["$envmaptint"] = "[ .5 .5 .5 ]",
-    --     ["$selfillum"] = 0,
-    --     ["$model"] = 1
-    -- }):SetVector("$color2", self.StickColor:ToVector())
+    CreateMaterial(materialName, "VertexLitGeneric", {
+        ["$basetexture"] = "models/debug/debugwhite",
+        ["$surfaceprop"] = "metal",
+        ["$envmap"] = "env_cubemap",
+        ["$envmaptint"] = "[ .5 .5 .5 ]",
+        ["$selfillum"] = 0,
+        ["$model"] = 1
+    }):SetVector("$color2", self.StickColor:ToVector())
 
     stunstickMaterials[materialName] = true
 end
