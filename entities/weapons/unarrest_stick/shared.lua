@@ -12,7 +12,7 @@ SWEP.IsDarkRPUnarrestStick = true
 
 SWEP.PrintName = "Unarrest Baton"
 SWEP.Spawnable = true
-SWEP.Category = "DarkRP (Utility)"
+SWEP.Category = "Highborn (Utility)"
 
 SWEP.StickColor = Color(0, 255, 0)
 

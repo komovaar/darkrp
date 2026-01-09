@@ -30,7 +30,7 @@ SWEP.UseHands = true
 
 SWEP.Spawnable = true
 SWEP.AdminOnly = true
-SWEP.Category = "DarkRP (Utility)"
+SWEP.Category = "Highborn (Utility)"
 SWEP.Sound = "doors/door_latch3.wav"
 
 SWEP.Primary.Delay = 0.3

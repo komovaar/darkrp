@@ -21,7 +21,7 @@ SWEP.Secondary.Ammo = ""
 
 SWEP.Spawnable = true
 SWEP.AdminOnly = true
-SWEP.Category = "DarkRP (Utility)"
+SWEP.Category = "Highborn (Utility)"
 
 SWEP.HoldType = "normal"
 SWEP.ViewModel = Model("models/weapons/c_pistol.mdl")

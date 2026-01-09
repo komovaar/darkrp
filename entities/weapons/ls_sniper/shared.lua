@@ -18,7 +18,7 @@ DEFINE_BASECLASS("weapon_cs_base2")
 SWEP.PrintName = "Silenced Sniper"
 SWEP.Spawnable = true
 SWEP.AdminOnly = false
-SWEP.Category = "DarkRP (Weapon)"
+SWEP.Category = "Highborn (Utility)"
 
 SWEP.ViewModel = "models/weapons/cstrike/c_snip_g3sg1.mdl"
 SWEP.WorldModel = "models/weapons/w_snip_g3sg1.mdl"

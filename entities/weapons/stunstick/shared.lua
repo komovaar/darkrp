@@ -20,7 +20,7 @@ SWEP.IsDarkRPStunstick = true
 
 SWEP.PrintName = "Stun Stick"
 SWEP.Spawnable = true
-SWEP.Category = "DarkRP (Utility)"
+SWEP.Category = "Highborn (Utility)"
 
 SWEP.StickColor = Color(0, 0, 255)
 
