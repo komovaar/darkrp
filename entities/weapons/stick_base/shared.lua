@@ -78,7 +78,7 @@ end
 function SWEP:Deploy()
     BaseClass.Deploy(self)
     if SERVER then
-        self:SetMaterial("!darkrp/" .. self:GetClass())
+        self:SetMaterial()
     end
 
     local vm = self:GetOwner():GetViewModel()
@@ -91,7 +91,7 @@ end
 
 function SWEP:PreDrawViewModel(vm)
     for i = 9, 15 do
-        vm:SetSubMaterial(i, "!darkrp/" .. self:GetClass())
+        vm:SetSubMaterial()
     end
 end
 
