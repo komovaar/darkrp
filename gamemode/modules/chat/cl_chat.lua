@@ -17,13 +17,13 @@ local function AddToChat(bits)
     if not IsValid(ply) then return end
 
     if prefixText == "" or not prefixText then
-        prefixText = ply:Nick()
-        prefixText = prefixText ~= "" and prefixText or ply:SteamName()
+        prefixText = prefixText ~= "" or ""
     end
 
-    local col2 = Color(net.ReadUInt(8), net.ReadUInt(8), net.ReadUInt(8))
+    local col3 = Color(net.ReadUInt(8), net.ReadUInt(8), net.ReadUInt(8))
 
     local text = net.ReadString()
+    local col2 = team.GetColor(ply:Team())
     local shouldShow
     if text and text ~= "" then
         if IsValid(ply) then
@@ -31,7 +31,7 @@ local function AddToChat(bits)
         end
 
         if shouldShow ~= true then
-            chat.AddNonParsedText(col1, prefixText, col2, ": " .. text)
+            chat.AddNonParsedText(col1, prefixText, col2, ply:Nick(), col3, ": " .. text)
         end
     else
         shouldShow = hook.Call("ChatText", GAMEMODE, "0", prefixText, prefixText, "darkrp")
