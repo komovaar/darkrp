@@ -23,8 +23,8 @@ local function PM(ply, args)
         local col = team.GetColor(ply:Team())
         local pname = ply:Nick()
         local col2 = color_white
-        DarkRP.talkToPerson(target, col, "[PM] " .. pname, col2, msg, ply)
-        DarkRP.talkToPerson(ply, col, "[PM] " .. pname, col2, msg, ply)
+        DarkRP.talkToPerson(target, col, "[PM] ", col2, msg, ply)
+        DarkRP.talkToPerson(ply, col, "[PM] ", col2, msg, ply)
     else
         DarkRP.notify(ply, 1, 4, DarkRP.getPhrase("could_not_find", tostring(name)))
     end
@@ -39,7 +39,7 @@ local function Whisper(ply, args)
             DarkRP.notify(ply, 1, 4, DarkRP.getPhrase("invalid_x", DarkRP.getPhrase("arguments"), ""))
             return ""
         end
-        DarkRP.talkToRange(ply, "[" .. DarkRP.getPhrase("whisper") .. "] " .. ply:Nick(), text, GAMEMODE.Config.whisperDistance)
+        DarkRP.talkToRange(ply, "[" .. DarkRP.getPhrase("whisper") .. "] ", text, GAMEMODE.Config.whisperDistance)
     end
     return args, DoSay
 end
@@ -51,7 +51,7 @@ local function Yell(ply, args)
             DarkRP.notify(ply, 1, 4, DarkRP.getPhrase("invalid_x", DarkRP.getPhrase("arguments"), ""))
             return ""
         end
-        DarkRP.talkToRange(ply, "[" .. DarkRP.getPhrase("yell") .. "] " .. ply:Nick(), text, GAMEMODE.Config.yellDistance)
+        DarkRP.talkToRange(ply, "[" .. DarkRP.getPhrase("yell") .. "] ", text, GAMEMODE.Config.yellDistance)
     end
     return args, DoSay
 end
@@ -103,7 +103,7 @@ local function OOC(ply, args)
         local phrase = DarkRP.getPhrase("ooc")
         local name = ply:Nick()
         for _, v in ipairs(player.GetAll()) do
-            DarkRP.talkToPerson(v, col, "[" .. phrase .. "] " .. name, col2, text, ply)
+            DarkRP.talkToPerson(v, col, "[" .. phrase .. "]", col2, text, ply)
         end
     end
     return args, DoSay
@@ -133,7 +133,7 @@ local function MayorBroadcast(ply, args)
         local phrase = DarkRP.getPhrase("broadcast")
         local name = ply:Nick()
         for _, v in ipairs(player.GetAll()) do
-            DarkRP.talkToPerson(v, col, phrase .. " " .. name, col2, text, ply)
+            DarkRP.talkToPerson(v, col, phrase, col2, text, ply)
         end
     end
     return args, DoSay
