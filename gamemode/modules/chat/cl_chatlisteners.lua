@@ -41,35 +41,35 @@ end
 --[[---------------------------------------------------------------------------
 Draw the results to the screen
 ---------------------------------------------------------------------------]]
-local function drawChatReceivers()
-    if not receivers then return end
+-- local function drawChatReceivers()
+--     if not receivers then return end
 
-    local fontHeight = draw.GetFontHeight("DarkRPHUD1")
-    local x, y = chat.GetChatBoxPos()
-    y = y - fontHeight - 4
+--     local fontHeight = draw.GetFontHeight("DarkRPHUD1")
+--     local x, y = chat.GetChatBoxPos()
+--     y = y - fontHeight - 4
 
-    local receiversCount = #receivers
-    -- No one hears you
-    if receiversCount == 0 then
-        draw.WordBox(2, x, y, DarkRP.getPhrase("hear_noone", currentConfig.text), "DarkRPHUD1", Color(0,0,0,160), Color(255,0,0,255))
-        return
-    -- Everyone hears you
-    elseif receiversCount == player.GetCount() - 1 then
-        draw.WordBox(2, x, y, DarkRP.getPhrase("hear_everyone"), "DarkRPHUD1", Color(0,0,0,160), Color(0,255,0,255))
-        return
-    end
+--     local receiversCount = #receivers
+--     -- No one hears you
+--     if receiversCount == 0 then
+--         draw.WordBox(2, x, y, DarkRP.getPhrase("hear_noone", currentConfig.text), "DarkRPHUD1", Color(0,0,0,160), Color(255,0,0,255))
+--         return
+--     -- Everyone hears you
+--     elseif receiversCount == player.GetCount() - 1 then
+--         draw.WordBox(2, x, y, DarkRP.getPhrase("hear_everyone"), "DarkRPHUD1", Color(0,0,0,160), Color(0,255,0,255))
+--         return
+--     end
 
-    draw.WordBox(2, x, y - (receiversCount * (fontHeight + 4)), DarkRP.getPhrase("hear_certain_persons", currentConfig.text), "DarkRPHUD1", Color(0,0,0,160), Color(0,255,0,255))
-    for i = 1, receiversCount, 1 do
-        if not IsValid(receivers[i]) then
-            receivers[i] = receivers[#receivers]
-            receivers[#receivers] = nil
-            continue
-        end
+--     draw.WordBox(2, x, y - (receiversCount * (fontHeight + 4)), DarkRP.getPhrase("hear_certain_persons", currentConfig.text), "DarkRPHUD1", Color(0,0,0,160), Color(0,255,0,255))
+--     for i = 1, receiversCount, 1 do
+--         if not IsValid(receivers[i]) then
+--             receivers[i] = receivers[#receivers]
+--             receivers[#receivers] = nil
+--             continue
+--         end
 
-        draw.WordBox(2, x, y - (i - 1) * (fontHeight + 4), receivers[i]:Nick(), "DarkRPHUD1", Color(0, 0, 0, 160), color_white)
-    end
-end
+--         draw.WordBox(2, x, y - (i - 1) * (fontHeight + 4), receivers[i]:Nick(), "DarkRPHUD1", Color(0, 0, 0, 160), color_white)
+--     end
+-- end
 
 --[[---------------------------------------------------------------------------
 Find out who could hear the player if they were to speak now
@@ -98,12 +98,12 @@ end
 Called when the player starts typing
 ---------------------------------------------------------------------------]]
 local function startFind()
-    local shouldDraw = hook.Call("HUDShouldDraw", GAMEMODE, "DarkRP_ChatReceivers")
-    if shouldDraw == false then return end
+    -- local shouldDraw = hook.Call("HUDShouldDraw", GAMEMODE, "DarkRP_ChatReceivers")
+    -- if shouldDraw == false then return end
 
     currentConfig = receiverConfigs[""]
-    hook.Add("Think", "DarkRP_chatRecipients", chatGetRecipients)
-    hook.Add("HUDPaint", "DarkRP_DrawChatReceivers", drawChatReceivers)
+    -- hook.Add("Think", "DarkRP_chatRecipients", chatGetRecipients)
+    -- hook.Add("HUDPaint", "DarkRP_DrawChatReceivers", drawChatReceivers)
 end
 hook.Add("StartChat", "DarkRP_StartFindChatReceivers", startFind)
 
@@ -111,8 +111,8 @@ hook.Add("StartChat", "DarkRP_StartFindChatReceivers", startFind)
 Called when the player stops typing
 ---------------------------------------------------------------------------]]
 local function stopFind()
-    hook.Remove("Think", "DarkRP_chatRecipients")
-    hook.Remove("HUDPaint", "DarkRP_DrawChatReceivers")
+    -- hook.Remove("Think", "DarkRP_chatRecipients")
+    -- hook.Remove("HUDPaint", "DarkRP_DrawChatReceivers")
 end
 hook.Add("FinishChat", "DarkRP_StopFindChatReceivers", stopFind)
 
@@ -187,12 +187,12 @@ Called when the player starts using their voice
 local function startFindVoice(ply)
     if ply ~= LocalPlayer() then return end
 
-    local shouldDraw = hook.Call("HUDShouldDraw", GAMEMODE, "DarkRP_ChatReceivers")
-    if shouldDraw == false then return end
+    -- local shouldDraw = hook.Call("HUDShouldDraw", GAMEMODE, "DarkRP_ChatReceivers")
+    -- if shouldDraw == false then return end
 
     currentConfig = receiverConfigs["speak"]
-    hook.Add("Think", "DarkRP_chatRecipients", chatGetRecipients)
-    hook.Add("HUDPaint", "DarkRP_DrawChatReceivers", drawChatReceivers)
+    -- hook.Add("Think", "DarkRP_chatRecipients", chatGetRecipients)
+    -- hook.Add("HUDPaint", "DarkRP_DrawChatReceivers", drawChatReceivers)
 end
 hook.Add("PlayerStartVoice", "DarkRP_VoiceChatReceiverFinder", startFindVoice)
 
