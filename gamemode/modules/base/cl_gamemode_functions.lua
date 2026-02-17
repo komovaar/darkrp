@@ -32,7 +32,6 @@ end
 function GM:PlayerStartVoice(ply)
     if ply == LocalPlayer() then
         ply.DRPIsTalking = true
-        return -- Not the original rectangle for yourself! ugh!
     end
     self.Sandbox.PlayerStartVoice(self, ply)
 end
@@ -40,7 +39,6 @@ end
 function GM:PlayerEndVoice(ply)
     if ply == LocalPlayer() then
         ply.DRPIsTalking = false
-        return
     end
 
     self.Sandbox.PlayerEndVoice(self, ply)
