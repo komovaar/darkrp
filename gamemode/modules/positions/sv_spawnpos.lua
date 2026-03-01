@@ -56,3 +56,56 @@ local function RemoveSpawnPos(ply, args)
     end
 end
 DarkRP.definePrivilegedChatCommand("removespawn", "DarkRP_AdminCommands", RemoveSpawnPos)
+
+local function SetCategorySpawn(ply, args)
+    local pos = ply:GetPos()
+    local category = nil
+
+    for _, cat in pairs(DarkRP.getCategories().jobs) do
+        if string.lower(args) == string.lower(cat.name) then
+            category = cat
+            break
+        end
+    end
+
+    if not category then
+        DarkRP.notify(ply, 1, 4, "Категорія не знайдена")
+        return
+    end
+
+    for k, v in pairs(RPExtraTeams) do
+        if v.category == category.name then
+           DarkRP.addTeamSpawnPos(k, {pos.x, pos.y, pos.z})
+        end
+    end
+
+    DarkRP.notify(ply, 0, 4, "Спавн встановлений для: " .. category.name)
+end
+
+DarkRP.definePrivilegedChatCommand("setteamspawn", "DarkRP_AdminCommands", SetCategorySpawn)
+
+local function RemoveCategorySpawns(ply, args)
+    local category = nil
+
+    for _, cat in pairs(DarkRP.getCategories().jobs) do
+        if string.lower(args) == string.lower(cat.name) then
+            category = cat
+            break
+        end
+    end
+
+    if not category then
+        DarkRP.notify(ply, 1, 4, "Категорія не знайдена")
+        return
+    end
+
+    for k, v in pairs(RPExtraTeams) do
+        if v.category == category.name then
+            DarkRP.removeTeamSpawnPos(k)
+        end
+    end
+
+    DarkRP.notify(ply, 0, 4, "Спавни для категорії видалені: " .. category.name)
+end
+
+DarkRP.definePrivilegedChatCommand("removeteamspawn", "DarkRP_AdminCommands", RemoveCategorySpawns)
