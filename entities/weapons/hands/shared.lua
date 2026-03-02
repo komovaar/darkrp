@@ -1,6 +1,6 @@
 AddCSLuaFile()
 if CLIENT then
-    SWEP.Slot = 1
+    SWEP.Slot = 0
     SWEP.SlotPos = 1
     SWEP.DrawAmmo = false
     SWEP.DrawCrosshair = false
