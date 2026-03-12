@@ -47,10 +47,12 @@ function SWEP:Deploy()
     return true
 end
 
-function SWEP:Holster()
+function SWEP:PreDrawViewModel()
     return true
 end
 
-function SWEP:PreDrawViewModel()
-    return true
+function SWEP:PrimaryAttack()
+end
+
+function SWEP:SecondaryAttack()
 end
