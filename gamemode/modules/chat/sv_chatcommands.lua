@@ -39,7 +39,7 @@ local function Whisper(ply, args)
             DarkRP.notify(ply, 1, 4, DarkRP.getPhrase("invalid_x", DarkRP.getPhrase("arguments"), ""))
             return ""
         end
-        DarkRP.talkToRange(ply, "[" .. DarkRP.getPhrase("whisper") .. "] ", text, GAMEMODE.Config.whisperDistance)
+        DarkRP.talkToRange(ply, "[Шепіт]", text, GAMEMODE.Config.whisperDistance)
     end
     return args, DoSay
 end
@@ -51,7 +51,7 @@ local function Yell(ply, args)
             DarkRP.notify(ply, 1, 4, DarkRP.getPhrase("invalid_x", DarkRP.getPhrase("arguments"), ""))
             return ""
         end
-        DarkRP.talkToRange(ply, "[" .. DarkRP.getPhrase("yell") .. "] ", text, GAMEMODE.Config.yellDistance)
+        DarkRP.talkToRange(ply, "[Крик]", text, GAMEMODE.Config.yellDistance)
     end
     return args, DoSay
 end
@@ -123,21 +123,26 @@ local function LOOC(ply, args)
             DarkRP.notify(ply, 1, 4, DarkRP.getPhrase("invalid_x", DarkRP.getPhrase("arguments"), ""))
             return ""
         end
-        local col = Color(204, 0, 0)
-        local col2 = color_white
-        if not ply:Alive() then
-            col2 = Color(204, 200, 200, 255)
-            col = col2
-        end
 
-        local phrase = DarkRP.getPhrase("ooc")
+        local col = Color(255, 255, 102, 255)  -- цвет никнейма
+        local col2 = color_white      -- цвет текста
+
+        local phrase = "LOOC"
         local name = ply:Nick()
-        DarkRP.talkToRange(ply, ply:Nick() .. " " .. text, "", GAMEMODE.Config.talkDistance)
+
+        -- Перебираем игроков рядом
+        for _, v in ipairs(player.GetAll()) do
+            if v:GetPos():Distance(ply:GetPos()) <= GAMEMODE.Config.talkDistance then
+                DarkRP.talkToPerson(v, col, "[" .. phrase .. "]", col2, text, ply)
+            end
+        end
     end
+
     return args, DoSay
 end
-DarkRP.defineChatCommand("l", LOOC, true, 1.5)
+
 DarkRP.defineChatCommand("looc", LOOC, true, 1.5)
+DarkRP.defineChatCommand("l", LOOC, true, 1.5)
 
 local function Advert(ply, args)
     local DoSay = function(text)
