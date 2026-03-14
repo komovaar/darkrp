@@ -421,7 +421,7 @@ function DarkRP.hooks:playerUnArrested(ply, actor, teleportOverride)
     end
 
     timer.Remove(ply:SteamID64() .. "jailtimer")
-    DarkRP.notifyAll(0, 4, DarkRP.getPhrase("hes_unarrested", ply:Nick()))
+    -- DarkRP.notifyAll(0, 4, DarkRP.getPhrase("hes_unarrested", ply:Nick()))
 end
 
 hook.Add("PlayerInitialSpawn", "Arrested", function(ply)

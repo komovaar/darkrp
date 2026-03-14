@@ -75,7 +75,7 @@ local function EnterLottery(answer, ent, initiator, target, TimeIsUp)
         end
 
         if table.IsEmpty(LotteryPeople) then
-            DarkRP.notifyAll(1, 4, DarkRP.getPhrase("lottery_noone_entered"))
+            -- DarkRP.notifyAll(1, 4, DarkRP.getPhrase("lottery_noone_entered"))
             hook.Run("lotteryEnded", LotteryPeople)
             return
         end
@@ -83,7 +83,7 @@ local function EnterLottery(answer, ent, initiator, target, TimeIsUp)
         local amt = #LotteryPeople * LotteryAmount
         hook.Run("lotteryEnded", LotteryPeople, chosen, amt)
         chosen:addMoney(amt)
-        DarkRP.notifyAll(0, 10, DarkRP.getPhrase("lottery_won", chosen:Nick(), DarkRP.formatMoney(amt)))
+        -- DarkRP.notifyAll(0, 10, DarkRP.getPhrase("lottery_won", chosen:Nick(), DarkRP.formatMoney(amt)))
     end
 end
 
@@ -167,7 +167,7 @@ function DarkRP.lockdown(ply)
 
     DarkRP.printMessageAll(HUD_PRINTTALK, DarkRP.getPhrase("lockdown_started"))
     SetGlobalBool("DarkRP_LockDown", true)
-    DarkRP.notifyAll(0, 3, DarkRP.getPhrase("lockdown_started"))
+    -- DarkRP.notifyAll(0, 3, DarkRP.getPhrase("lockdown_started"))
 
     hook.Run("lockdownStarted", ply)
 
@@ -189,7 +189,7 @@ function DarkRP.unLockdown(ply)
     end
 
     DarkRP.printMessageAll(HUD_PRINTTALK, DarkRP.getPhrase("lockdown_ended"))
-    DarkRP.notifyAll(0, 3, DarkRP.getPhrase("lockdown_ended"))
+    -- DarkRP.notifyAll(0, 3, DarkRP.getPhrase("lockdown_ended"))
     SetGlobalBool("DarkRP_LockDown", false)
 
     lastLockdown = CurTime()
@@ -379,9 +379,9 @@ local function FinishRevokeLicense(vote, win)
         vote.target:setDarkRPVar("HasGunlicense", nil)
         vote.target:StripWeapons()
         gamemode.Call("PlayerLoadout", vote.target)
-        DarkRP.notifyAll(0, 4, DarkRP.getPhrase("gunlicense_removed", vote.target:Nick()))
+        -- DarkRP.notifyAll(0, 4, DarkRP.getPhrase("gunlicense_removed", vote.target:Nick()))
     else
-        DarkRP.notifyAll(0, 4, DarkRP.getPhrase("gunlicense_not_removed", vote.target:Nick()))
+        -- DarkRP.notifyAll(0, 4, DarkRP.getPhrase("gunlicense_not_removed", vote.target:Nick()))
     end
 end
 
@@ -417,7 +417,7 @@ local function VoteRemoveLicense(ply, args)
 
             if voteInfo then
                 -- Vote has started
-                DarkRP.notifyAll(0, 4, DarkRP.getPhrase("gunlicense_remove_vote_text", ply:Nick(), p:Nick()))
+                -- DarkRP.notifyAll(0, 4, DarkRP.getPhrase("gunlicense_remove_vote_text", ply:Nick(), p:Nick()))
             end
             ply.LastVoteCop = CurTime()
         end

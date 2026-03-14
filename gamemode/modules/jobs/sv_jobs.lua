@@ -95,7 +95,7 @@ function meta:changeTeam(t, force, suppressNotification, ignoreMaxMembers)
     end
     self:updateJob(TEAM.name)
     self:setSelfDarkRPVar("salary", TEAM.salary)
-    notifyAll(0, 4, DarkRP.getPhrase("job_has_become", self:Nick(), TEAM.name))
+    -- notifyAll(0, 4, DarkRP.getPhrase("job_has_become", self:Nick(), TEAM.name))
 
 
     if self:getDarkRPVar("HasGunlicense") and GAMEMODE.Config.revokeLicenseOnJobChange then
@@ -277,7 +277,7 @@ local function ChangeJob(ply, args)
     end
 
     local job = replace or args
-    DarkRP.notifyAll(2, 4, DarkRP.getPhrase("job_has_become", ply:Nick(), job))
+    -- DarkRP.notifyAll(2, 4, DarkRP.getPhrase("job_has_become", ply:Nick(), job))
     ply:updateJob(job)
     return ""
 end
@@ -300,9 +300,9 @@ local function FinishDemote(vote, choice)
         end
 
         hook.Call("onPlayerDemoted", nil, vote.info.source, target, vote.info.reason)
-        DarkRP.notifyAll(0, 4, DarkRP.getPhrase("demoted", target:Nick()))
+        -- DarkRP.notifyAll(0, 4, DarkRP.getPhrase("demoted", target:Nick()))
     else
-        DarkRP.notifyAll(1, 4, DarkRP.getPhrase("demoted_not", target:Nick()))
+        -- DarkRP.notifyAll(1, 4, DarkRP.getPhrase("demoted_not", target:Nick()))
     end
 end
 
@@ -362,7 +362,7 @@ local function Demote(ply, args)
 
         if voteInfo then
             -- Vote has started
-            DarkRP.notifyAll(0, 4, DarkRP.getPhrase("demote_vote_started", ply:Nick(), p:Nick()))
+            -- DarkRP.notifyAll(0, 4, DarkRP.getPhrase("demote_vote_started", ply:Nick(), p:Nick()))
             DarkRP.log(DarkRP.getPhrase("demote_vote_started", string.format("%s(%s)[%s]", ply:Nick(), ply:SteamID(), team.GetName(ply:Team())), string.format("%s(%s)[%s] for %s", p:Nick(), p:SteamID(), team.GetName(p:Team()), reason)), Color(255, 128, 255, 255))
             p.IsBeingDemoted = true
         end
@@ -466,7 +466,7 @@ local function DoTeamBan(ply, args)
     else
         nick = ply:Nick()
     end
-    DarkRP.notifyAll(0, 5, DarkRP.getPhrase("x_teambanned_y_for_z", nick, target:Nick(), team.GetName(tonumber(Team)), time / 60))
+    -- DarkRP.notifyAll(0, 5, DarkRP.getPhrase("x_teambanned_y_for_z", nick, target:Nick(), team.GetName(tonumber(Team)), time / 60))
 end
 DarkRP.definePrivilegedChatCommand("teamban", "DarkRP_AdminCommands", DoTeamBan)
 
@@ -511,6 +511,6 @@ local function DoTeamUnBan(ply, args)
     else
         nick = ply:Nick()
     end
-    DarkRP.notifyAll(0, 5, DarkRP.getPhrase("x_teamunbanned_y", nick, target:Nick(), team.GetName(tonumber(Team))))
+    -- DarkRP.notifyAll(0, 5, DarkRP.getPhrase("x_teamunbanned_y", nick, target:Nick(), team.GetName(tonumber(Team))))
 end
 DarkRP.definePrivilegedChatCommand("teamunban", "DarkRP_AdminCommands", DoTeamUnBan)
