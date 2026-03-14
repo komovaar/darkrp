@@ -35,7 +35,6 @@ end
 
 function DarkRP.printMessageAll(msgtype, msg)
     for _, v in ipairs(player.GetAll()) do
-        v:PrintMessage(msgtype, msg)
     end
 end
 
