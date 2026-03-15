@@ -14,8 +14,8 @@ PLAYER_CLASS.MaxHealth			= 100		-- Max health we can have
 PLAYER_CLASS.StartHealth			= 100		-- How much health we start with
 PLAYER_CLASS.StartArmor			= 0			-- How much armour we start with
 PLAYER_CLASS.DropWeaponOnDie		= false		-- Do we drop our weapon when we die
-PLAYER_CLASS.TeammateNoCollide	= true		-- Do we collide with teammates or run straight through them
-PLAYER_CLASS.AvoidPlayers			= true		-- Automatically swerves around other players
+PLAYER_CLASS.TeammateNoCollide	= false		-- Do we collide with teammates or run straight through them
+PLAYER_CLASS.AvoidPlayers			= false		-- Automatically swerves around other players
 PLAYER_CLASS.UseVMHands			= true		-- Uses viewmodel hands
 
 function PLAYER_CLASS:Loadout()
