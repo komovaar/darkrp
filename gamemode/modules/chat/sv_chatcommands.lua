@@ -124,16 +124,15 @@ local function LOOC(ply, args)
             return ""
         end
 
-        local col = Color(255, 255, 102, 255)  -- цвет никнейма
-        local col2 = color_white      -- цвет текста
+        local col = Color(255, 255, 102, 255) 
+        local col2 = color_white     
 
         local phrase = "LOOC"
         local name = ply:Nick()
 
-        -- Перебираем игроков рядом
         for _, v in ipairs(player.GetAll()) do
             if v:GetPos():Distance(ply:GetPos()) <= GAMEMODE.Config.talkDistance then
-                DarkRP.talkToPerson(v, col, "[" .. phrase .. "]", col2, text, ply)
+                DarkRP.talk(v, col, "[" .. phrase .. "]", col2, text, ply)
             end
         end
     end
@@ -168,169 +167,34 @@ end
 DarkRP.defineChatCommand("ad", Advert, true, 1.5)
 DarkRP.defineChatCommand("advert", Advert, true, 1.5)
 
--- local function MayorBroadcast(ply, args)
---     if args == "" then
---         DarkRP.notify(ply, 1, 4, DarkRP.getPhrase("invalid_x", DarkRP.getPhrase("arguments"), ""))
---         return ""
---     end
---     local Team = ply:Team()
---     if not RPExtraTeams[Team] or not RPExtraTeams[Team].mayor then
---         DarkRP.notify(ply, 1, 4, DarkRP.getPhrase("incorrect_job", DarkRP.getPhrase("broadcast")))
---         return ""
---     end
---     local DoSay = function(text)
---         if text == "" then
---             DarkRP.notify(ply, 1, 4, DarkRP.getPhrase("invalid_x", DarkRP.getPhrase("arguments"), ""))
---             return
---         end
-
---         local col = team.GetColor(ply:Team())
---         local col2 = Color(170, 0, 0, 255)
---         local phrase = DarkRP.getPhrase("broadcast")
---         local name = ply:Nick()
---         for _, v in ipairs(player.GetAll()) do
---             DarkRP.talkToPerson(v, col, phrase, col2, text, ply)
---         end
---     end
---     return args, DoSay
--- end
--- DarkRP.defineChatCommand("broadcast", MayorBroadcast, 1.5)
-
--- local function SetRadioChannel(ply,args)
---     local channel = DarkRP.toInt(args)
---     if channel == nil or channel < 0 or channel > 100 then
---         DarkRP.notify(ply, 1, 4, DarkRP.getPhrase("invalid_x", DarkRP.getPhrase("arguments"), "0<" .. DarkRP.getPhrase("channel") .. "<100"))
---         return ""
---     end
---     DarkRP.notify(ply, 2, 4, DarkRP.getPhrase("channel_set_to_x", args))
---     ply.RadioChannel = channel
---     return ""
--- end
--- DarkRP.defineChatCommand("channel", SetRadioChannel)
-
--- local function SayThroughRadio(ply,args)
---     if not ply.RadioChannel then ply.RadioChannel = 1 end
---     local radioChannel = ply.RadioChannel
---     if not args or args == "" then
---         DarkRP.notify(ply, 1, 4, DarkRP.getPhrase("invalid_x", DarkRP.getPhrase("arguments"), ""))
---         return ""
---     end
---     local DoSay = function(text)
---         if text == "" then
---             DarkRP.notify(ply, 1, 4, DarkRP.getPhrase("invalid_x", DarkRP.getPhrase("arguments"), ""))
---             return
---         end
---         local col = Color(180, 180, 180, 255)
---         local phrase = DarkRP.getPhrase("radio_x", radioChannel)
---         for _, v in ipairs(player.GetAll()) do
---             if v.RadioChannel == radioChannel then
---                 DarkRP.talkToPerson(v, col, phrase, col, text, ply)
---             end
---         end
---     end
---     return args, DoSay
--- end
--- DarkRP.defineChatCommand("radio", SayThroughRadio, 1.5)
-
--- local function GroupMsg(ply, args)
---     local DoSay = function(text)
---         if text == "" then
---             DarkRP.notify(ply, 1, 4, DarkRP.getPhrase("invalid_x", DarkRP.getPhrase("arguments"), ""))
---             return
---         end
-
---         local col = team.GetColor(ply:Team())
-
---         local groupChats = {}
---         for _, func in pairs(GAMEMODE.DarkRPGroupChats) do
---             -- not the group of the player
---             if not func(ply) then continue end
-
---             table.insert(groupChats, func)
---         end
-
---         if table.IsEmpty(groupChats) then return "" end
-
---         local phrase = DarkRP.getPhrase("group")
---         local name = ply:Nick()
---         local color = color_white
---         for _, target in ipairs(player.GetAll()) do
---             -- The target is in any of the group chats
---             for _, func in ipairs(groupChats) do
---                 if not func(target, ply) then continue end
-
---                 DarkRP.talkToPerson(target, col, phrase .. " " .. name, color, text, ply)
---                 break
---             end
---         end
---     end
---     return args, DoSay
--- end
--- DarkRP.defineChatCommand("g", GroupMsg, 0)
-
--- here's the new easter egg. Easier to find, more subtle, doesn't only credit FPtje and unib5
--- WARNING: DO NOT EDIT THIS
--- You can edit DarkRP but you HAVE to credit the original authors!
--- You even have to credit all the previous authors when you rename the gamemode.
--- local CreditsWait = true
--- local function GetDarkRPAuthors(ply, args)
---     local target = DarkRP.findPlayer(args) -- Only send to one player. Prevents spamming
---     target = IsValid(target) and target or ply
-
---     if target ~= ply then
---         if ply.CreditsWait then DarkRP.notify(ply, 1, 4, DarkRP.getPhrase("wait_with_that")) return "" end
---         ply.CreditsWait = true
---         timer.Simple(60, function() if IsValid(ply) then ply.CreditsWait = nil end end) -- so people don't spam it
---     end
-
---     local rf = RecipientFilter()
---     rf:AddPlayer(target)
---     if ply ~= target then
---         rf:AddPlayer(ply)
---     end
-
---     umsg.Start("DarkRP_Credits", rf)
---     umsg.End()
-
---     return ""
--- end
--- DarkRP.defineChatCommand("credits", GetDarkRPAuthors, 50)
-
-DarkRP.defineChatCommand("roll", function(ply, args)
+local function Roll(ply)
     local num = math.random(1, 100)
-        for _, v in ipairs(player.GetAll()) do
-        if v:GetPos():Distance(ply:GetPos()) < 300 then
-            v:ChatPrint(ply:Nick() .. " " .. "  викинув число: " .. num)
-        end
-    end
-end)
 
-DarkRP.defineChatCommand("do", function(ply, args)
-    if args == "" then return "" end
-
-    for _, v in ipairs(player.GetAll()) do
-        if v:GetPos():Distance(ply:GetPos()) < 300 then
-            v:ChatPrint(args .. " (" .. ply:Nick() .. ")")
-        end
-    end
+    DarkRP.talkToRange(ply, ply:Nick() .. " " .. " викинув число: " .. num, "", GAMEMODE.Config.meDistance)
 
     return ""
-end)
+end
+DarkRP.defineChatCommand("roll", Roll, true, 1.5)
 
-DarkRP.defineChatCommand("try", function(ply, args)
+local function Do(ply, args)
+    if args == "" then return "" end
+
+    DarkRP.talkToRange(ply, args .. " (" .. ply:Nick() .. ")", "", GAMEMODE.Config.meDistance)
+
+    return ""
+end
+DarkRP.defineChatCommand("do", Do, true, 1.5)
+DarkRP.defineChatCommand("it", Do, true, 1.5)
+
+function Try(ply, args)
     if args == "" then return "" end
 
     local success = math.random(1,2) == 1
-    local result = success and "Успішно" or "Неуспішно"
-
-    for _, v in ipairs(player.GetAll()) do
-        if v:GetPos():Distance(ply:GetPos()) < 300 then
-            v:ChatPrint(ply:Nick() .. " " .. args .. ", " .. result)
-        end
-    end
-
+    local result = success and "успішно" or "неуспішно"
+    DarkRP.talkToRange(ply, ply:Nick() .. " " .. args .. ", " .. result, "", GAMEMODE.Config.meDistance)
     return ""
-end)
+end
+DarkRP.defineChatCommand("try", Try, true, 1.5)
 
 DarkRP.defineChatCommand("helmet", function(ply, args)
 
