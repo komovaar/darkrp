@@ -132,7 +132,7 @@ local function LOOC(ply, args)
 
         for _, v in ipairs(player.GetAll()) do
             if v:GetPos():Distance(ply:GetPos()) <= GAMEMODE.Config.talkDistance then
-                DarkRP.talk(v, col, "[" .. phrase .. "]", col2, text, ply)
+                DarkRP.talkToPerson(v, col, "[" .. phrase .. "]", col2, text, ply)
             end
         end
     end
